@@ -1,34 +1,30 @@
-//Tuve problemas con el comando prompt, por lo que lo cambié a readline
-
-const readline = require('readline');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.question('Ingresa la temperatura en grados Celsius: ', (answer) => {
-  let celsius = parseInt(answer);
+document.getElementById("convertirBtn").addEventListener("click", function() {
+    // Este código se ejecutará cuando se haga clic en el botón "Convertir"
+  
+    // Obtener el valor ingresado por el usuario
+    let inputCelsius = document.getElementById("inputCelsius").value;
+    let celsius = parseInt(inputCelsius);
+  
+    // Verificar si la entrada es un número válido
     if (isNaN(celsius)) {
-        console.log(`Debe ingresar un número`);
-        
+      alert('Por favor, ingresa un número válido.');
+    } else {
+      // Realizar las conversiones
+      let Fahrenheit = celtoFahr(celsius);
+      let Kelvin = celtoKel(celsius);
+  
+      // Mostrar los resultados en los elementos <h2>
+      document.getElementById("Fahrenheit").innerText = `Temperatura en Fahrenheit: ${Fahrenheit}°F`;
+      document.getElementById("Kelvin").innerText = `Temperatura en Kelvin: ${Kelvin}K`;
     }
-
-
-
-  let Fahrenheit = celtoFahr(celsius);
-  let Kelvin = celtoKel(celsius);
-
-  console.log(`${celsius}°C es igual a ${Fahrenheit}°F`);
-  console.log(`${celsius}°C es igual a ${Kelvin}K`);
-
-  rl.close();
-});
-
-function celtoFahr(celsius) {
-  return (celsius * 9/5) + 32;
-}
-
-function celtoKel(celsius) {
-  return celsius + 273.15;
-}
+  });
+  
+  function celtoFahr(celsius) {
+    return (celsius * 9/5) + 32;
+  }
+  
+  function celtoKel(celsius) {
+    return celsius + 273.15;
+  }
+  document.write(`${Fahrenheit}`)
+  document.write(`${Kelvin}`)
